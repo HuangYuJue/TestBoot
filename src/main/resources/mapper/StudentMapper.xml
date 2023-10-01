@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace绑定Dao接口 -->
+<mapper namespace="com.example.testboot.mapper.StudentMapper">
+
+    <select id="getStudent" resultMap="studentResultMap">
+        select * from students where name = #{name};
+    </select>
+
+    <!-- 自定义Student实体类封装规则，id：唯一id，方便引用，type：自定义规则的Java类型 -->
+    <resultMap id="studentResultMap" type="Student">
+        <!-- column：指定哪一列，property：指定对应的javaBean属性 -->
+        <id property="id" column="id"/>
+        <!-- 定义普通封装规则 -->
+        <result property="sex" column="gender"/>
+    </resultMap>
+</mapper>
